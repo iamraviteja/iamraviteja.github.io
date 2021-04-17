@@ -1,5 +1,8 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 const siteConfig = require("./src/config/site.config.json");
 
 const TEMPLATE_PATH = path.resolve(__dirname, "./src/templates");
@@ -30,5 +33,13 @@ module.exports = {
     filename: "[name].bundle.js",
     clean: true,
   },
-  plugins: [].concat(htmlPlugins),
+  module: {
+    rules: [
+      {
+        test: /\.(scss|css)$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+    ],
+  },
+  plugins: [new MiniCssExtractPlugin()].concat(htmlPlugins),
 };

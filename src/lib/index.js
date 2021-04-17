@@ -4,7 +4,7 @@ const path = require("path");
 
 // resolve paths
 const resolveOutputPath = (filename, rootPath) =>
-  path.resolve(rootPath, `./public/${filename}.html`);
+  path.resolve(rootPath, `./src/templates/${filename}.html`);
 
 const resolveLayoutPath = (options, page, rootPath) => {
   const defaultFolder = options.path;

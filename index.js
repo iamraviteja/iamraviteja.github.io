@@ -5,30 +5,17 @@ const compilePageTemplates = require("./src/lib");
 
 // env
 const ENV = process.env.ENV;
-const shouldServeLocal = process.env.SERVE.toLowerCase() === "true";
-
-const express = require("express");
-const app = express();
-const port = 3000;
 
 // get all pages
 const pages = config.pages;
 const defaults = config.defaults;
 const rootPath = path.resolve(__dirname);
 
-// copy the assets to public folder
-// build the scss to public folder
-// TODO: push this to build script like webpack or gulp or grunt
+// TODO: split serve and template build
+// template build, SCSS and JS build, push the build to public or copy assets to public
 
 Promise.all(compilePageTemplates(pages, defaults, rootPath)).then((values) => {
   console.log("File written successfully\n");
-  if (shouldServeLocal) {
-    console.log("Start the server\n");
-    app.use(express.static("public"));
-    app.listen(port, () => {
-      console.log(`Example app listening at http://localhost:${port}`);
-    });
-  }
 });
 
 // TODO site map page in default view

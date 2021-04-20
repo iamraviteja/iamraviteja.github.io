@@ -1,0 +1,36 @@
+.card {
+  border-top: 2px solid $iris;
+}
+.card-form {
+  h4 {
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .radio {
+    display: block;
+    margin: 0;
+    padding: 10px 0;
+    text-transform: capitalize;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    input {
+      display: none;
+    }
+    .label-text {
+      display: block;
+      border: 1px solid $border;
+      text-align: center;
+      padding: 7px 0;
+      border-radius: 5px;
+    }
+    input:checked + .label-text {
+      background-color: $iris;
+      color: $white;
+    }
+  }
+}

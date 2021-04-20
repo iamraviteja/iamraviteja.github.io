@@ -16,7 +16,14 @@
             "default":{
                 "type":"url",
                 "path":"https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"
+            },
+            "fonts":{
+                "type":"url",
+                "path":"https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap"
             }
+        },
+        "partials":{
+            "path":"./src/components"
         }
     }
 }

@@ -1,4 +1,12 @@
-<h1>Hello world!!</h1>
-<p>
-    {{paraText}}
-</p>
+{{> header}}
+<div class="columns">
+    <div class="column">
+        <div class="content section-content">
+            <h3>{{sectionTitle}}</h3>
+            <p>
+                {{paraText}}
+            </p>
+            {{> card }}
+        </div>
+    </div>
+</div>

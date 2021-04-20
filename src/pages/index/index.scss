@@ -1,1 +1,17 @@
 @import "../../assets/scss/reset";
+@import "../../assets/scss/variables";
+
+@import "../../components/header";
+@import "../../components/card";
+
+body {
+  background-color: $alice-blue;
+  min-height: 100vh;
+}
+
+.section-content {
+  padding: 10px 16px;
+  p {
+    font-size: 14px;
+  }
+}

@@ -1,6 +1,7 @@
 const handlebars = require("handlebars");
 const fs = require("fs-extra");
 const path = require("path");
+const promisify = require("util").promisify;
 
 // resolve paths
 const resolveOutputPath = (filename, rootPath) =>
@@ -37,11 +38,43 @@ const renderHbsTemplate = (template, data) => {
 };
 
 const linkStylesheet = (options) => {
-  const defaultCSS = options.default;
-  if (defaultCSS.type === "url") {
-    return `<link rel="stylesheet" href="${defaultCSS.path}">`;
+  let returnlinks = ``;
+
+  // loop over the options and concat the url to links
+  for (const key in options) {
+    if (Object.hasOwnProperty.call(options, key)) {
+      const cssOption = options[key];
+      if (cssOption.type === "url") {
+        returnlinks += `<link rel="stylesheet" href="${cssOption.path}" >\n`;
+      }
+    }
   }
-  // TODO: If the type is path then copy the css to assets folder
+  return returnlinks;
+};
+
+const registerPartials = (partialsPath, rootPath) => {
+  // loop over first level folders and convert the index.hbs files to partials
+  let partialFolders = [];
+  console.log("running ...");
+  return promisify(fs.readdir)(partialsPath)
+    .then((folders) => {
+      partialFolders = folders;
+      return Promise.all(
+        folders.map((folderPath) => {
+          return fs.readFile(
+            path.resolve(rootPath, `${partialsPath}/${folderPath}/index.hbs`),
+            "utf8"
+          );
+        })
+      );
+    })
+    .then((data) => {
+      partialFolders.map((folder, index) => {
+        handlebars.registerPartial(folder, data[index]);
+      });
+      return true;
+    })
+    .catch((err) => console.error(err));
 };
 
 /**
@@ -51,8 +84,19 @@ const linkStylesheet = (options) => {
  * @param {Object} rootPath root path of the project
  * @returns Promise array of the outputfile renders
  */
-const compilePageTemplates = (pages, defaults, rootPath) => {
+const compilePageTemplates = async (pages, defaults, rootPath) => {
   let outputFilePromises = [];
+  const partialsPath = path.resolve(rootPath, defaults.partials.path);
+
+  // Register partials and helpers
+  let isPartial = await registerPartials(partialsPath, rootPath);
+
+  if (isPartial) {
+    console.log(`Partials registration complete`);
+  }
+
+  // TODO: throw error and abort compilation if partials are not registered
+
   for (const key in pages) {
     if (Object.hasOwnProperty.call(pages, key)) {
       // resolve the paths and get the file data
@@ -86,7 +130,7 @@ const compilePageTemplates = (pages, defaults, rootPath) => {
     }
   }
 
-  return outputFilePromises;
+  return Promise.all(outputFilePromises);
 };
 
 module.exports = compilePageTemplates;

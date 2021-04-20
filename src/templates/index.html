@@ -1,19 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-navbar-fixed-top">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css" >
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap" >
+
     <title>index</title>
 </head>
 
 <body>
-    <h1>Hello world!!</h1>
-<p>
-    lorem ipsum dolor sit
-</p>
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <span class="logo">WORD POWER</span>
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item">
+                Home
+            </a>
+
+            <a class="navbar-item">
+                About
+            </a>
+        </div>
+
+    </div>
+</nav><div class="columns">
+    <div class="column">
+        <div class="content section-content">
+            <h3>Vocabulary</h3>
+            <p>
+                Test your vocabulary by answering as many questions as possible
+            </p>
+            <div class="card">
+                <div class="card-content">
+                    <div class="content">
+                        <form class="card-form" novalidate>
+                            <h4>Abdicate</h4>
+                            <div class="control">
+                                <label class="radio">
+                                    <input type="radio" name="answer">
+                                    <span class="label-text">achieve</span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="answer">
+                                    <span class="label-text">protest</span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="answer">
+                                    <span class="label-text">renounce</span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="answer">
+                                    <span class="label-text">demand</span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="answer">
+                                    <span class="label-text">steal</span>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item">Previous</a>
+                    <a href="#" class="card-footer-item">Next</a>
+                </footer>
+            </div>        </div>
+    </div>
+</div>
 </body>
 
 </html>

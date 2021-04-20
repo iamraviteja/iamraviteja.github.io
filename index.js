@@ -14,7 +14,7 @@ const rootPath = path.resolve(__dirname);
 // TODO: split serve and template build
 // template build, SCSS and JS build, push the build to public or copy assets to public
 
-Promise.all(compilePageTemplates(pages, defaults, rootPath)).then((values) => {
+compilePageTemplates(pages, defaults, rootPath).then((values) => {
   console.log("File written successfully\n");
 });
 
